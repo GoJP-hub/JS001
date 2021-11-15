@@ -1,3 +1,12 @@
+$cardColor: rgb(73, 149, 211);
+@mixin icon($color: $cardColor) {
+    .item {
+        i {
+            color: $color;
+        }
+    }
+}
+
 .img-responsive{
      width: 100%;
 }
@@ -5,4 +14,36 @@
     max-width: 600px;
     width: 100%;
     margin: 3% auto 0 auto;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    :hover {
+        color: whitesmoke;
+        background: $cardColor;
+        .card-footer-custom {
+            @include icon();
+        }
+    }
+}
+
+.card {
+    width: 95%;
+    margin: 1% auto;
+    border: 1px solid;
+    .card-footer-custom {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .item {
+            i {
+                color: $cardColor;
+            }
+        }
+    }
+}
+.thumbnail-xsmall { 
+    width: 24px;
+    height: 24px;
 }

@@ -9,3 +9,19 @@
         <img src="/assets/images/carousel3.jpg" class="img-responsive">
     </ng-template>
 </ngb-carousel>
+
+<a class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{article?.articleTitle}}</h5>
+        <p class="card-text">{{article?.articleContent}}</p>
+        <div class="card-footer-custom">
+            <div class="item">
+                <i class="fas fa-heart"></i>{{article?.niceCount}}
+            </div>
+            <div class="item">
+                <img src="{{article?.pictureUrl}}" class="roudned-circle" ngbTooltip="{{article?.createdBy}}" placement="bottom"/>
+                {{article?.createdAt}}
+            </div>
+        </div>
+    </div>
+</a>
