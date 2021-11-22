@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppError } from 'src/app/common/app-error';
+import { BadRequestError } from 'src/app/common/bad-request-error';
 import { Article } from 'src/app/models/article';
 import { ArticleListService } from 'src/app/services/article-list.service';
 import { ARTICLES } from '../../models/mock-article'
@@ -29,6 +31,13 @@ export class ArticleListComponent implements OnInit {
       (articles) => { 
         console.log(JSON.stringify(articles)); 
         this.articleList = articles;
+      },
+      (err: AppError) => {
+        if (err instanceof BadRequestError){
+          console.log('ERROR: BAD REQUEST ERROR')
+        }else{
+          throw err;
+        }
       }  
     );
   }

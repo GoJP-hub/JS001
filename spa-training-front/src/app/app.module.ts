@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -10,8 +10,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeadlinePipe } from './pipes/headline.pipe';
 import { ThumbnailDirective } from './directives/thumbnail.directive';
-import { CommonInterceptor } from './intercepts/common-interceptor';
-import { MockBackendInterceptor } from './intercepts/mock-backend-interceptor';
+import { AppErrorHandler } from './common/app-error-hander';
+import { environment } from 'src/environments/environment';
+
+const httpInterceptorProviders = environment.httpInterceptorProviders;
 
 @NgModule({
   declarations: [
@@ -29,8 +31,8 @@ import { MockBackendInterceptor } from './intercepts/mock-backend-interceptor';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true}
+    { provide: ErrorHandler, useClass: AppErrorHandler},
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

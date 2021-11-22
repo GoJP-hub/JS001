@@ -12,8 +12,8 @@ export const environment = {
   apiUrl: 'http://localhost:8080',
   
   httpInterceptorProviders: [
-    { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true},
-    // { provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true}
+    // { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: MockBackendInterceptor, multi: true}
   ],
 };
 

@@ -36,6 +36,14 @@
             "scripts": []
           },
           "configurations": {
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -71,6 +79,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "dev": {
+              "browserTarget": "spa-training-front:build:dev"
+            },
             "production": {
               "browserTarget": "spa-training-front:build:production"
             },
