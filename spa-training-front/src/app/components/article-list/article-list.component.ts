@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article';
+import { ArticleListService } from 'src/app/services/article-list.service';
 import { ARTICLES } from '../../models/mock-article'
 
 @Component({
@@ -9,7 +10,7 @@ import { ARTICLES } from '../../models/mock-article'
 })
 export class ArticleListComponent implements OnInit {
 
-  articleList: Article[] = ARTICLES;
+  articleList: Article[] = [];
 
   carouselPosition = {
     maxWidth: '600px',
@@ -17,9 +18,19 @@ export class ArticleListComponent implements OnInit {
     margin: '3% auto 0 auto',
   };
 
-  constructor() { }
+  constructor(private articleListservice: ArticleListService) { }
 
   ngOnInit(): void {
+    this.getArticles();
+  }
+
+  getArticles(){
+    this.articleListservice.getArticle(0, 5).subscribe(
+      (articles) => { 
+        console.log(JSON.stringify(articles)); 
+        this.articleList = articles;
+      }  
+    );
   }
 
 }
