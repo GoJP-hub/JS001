@@ -1,10 +1,12 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { ArticleListComponent } from './components/article-list/article-list.component';
+import { ArticleCreateTemplateComponent } from './components/article-create/article-create-template/article-create-template.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -23,12 +25,14 @@ const httpInterceptorProviders = environment.httpInterceptorProviders;
     FooterComponent,
     SidebarComponent,
     HeadlinePipe,
-    ThumbnailDirective
+    ThumbnailDirective,
+    ArticleCreateTemplateComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler},

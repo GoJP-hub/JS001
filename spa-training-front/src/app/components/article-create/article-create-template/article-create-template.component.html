@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>記事を投稿する</h2>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <!--Input Title-->
+        <div class="form-group row">
+            <label class="col-12 col-md-1 control-label">題名</label>
+            <div class="col-12 col-md-11">
+                <input 
+                type="text" 
+                class="form-control" 
+                name="articleTitle" 
+                ngModel
+                required
+                #articleTitle="ngModel"/>
+                <!--Validation-->
+                <div *ngIf="articleTitle.invalid && articleTitle.touched" class="alert alert-danger">
+                    題名は必須です
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!--Input Contents-->
+        <div class="form-group">
+            <textarea 
+                col-12
+                name="articleContent"  
+                rows="6" 
+                class="form-control" 
+                type="text" 
+                placeholder="ここに記事の内容を入力してください"
+                ngModel
+                required
+                minlength="5"
+                #articleContent="ngModel"></textarea>
+            <div *ngIf="articleContent.invalid && articleContent.touched" class="alert alert-danger">
+                <div *ngIf="articleContent.errors?.required">本文は必須です</div>
+                <div *ngIf="articleContent.errors?.minlength">本文は5文字以上が必須です</div>
+            </div>
+        </div>
+        <!--Submit Button-->
+        <div class="row">
+            <button type="submit" class="offset-10 col-2 btn btn-outline-primary" [disabled]="form.invalid">投稿</button>
+        </div>
+    </form>
+</div>
