@@ -2,7 +2,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { ArticleListComponent } from './components/article-list/article-list.component';
@@ -14,6 +14,8 @@ import { HeadlinePipe } from './pipes/headline.pipe';
 import { ThumbnailDirective } from './directives/thumbnail.directive';
 import { AppErrorHandler } from './common/app-error-hander';
 import { environment } from 'src/environments/environment';
+import { ArticleCreateReactiveComponent } from './components/article-create/article-create-reactive/article-create-reactive.component';
+import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 
 const httpInterceptorProviders = environment.httpInterceptorProviders;
 
@@ -26,13 +28,16 @@ const httpInterceptorProviders = environment.httpInterceptorProviders;
     SidebarComponent,
     HeadlinePipe,
     ThumbnailDirective,
-    ArticleCreateTemplateComponent
+    ArticleCreateTemplateComponent,
+    ArticleCreateReactiveComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler},
