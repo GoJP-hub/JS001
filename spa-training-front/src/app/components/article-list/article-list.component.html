@@ -1,3 +1,4 @@
+<!-- Caoursel -->
 <ngb-carousel [ngStyle]="carouselPosition">
     <ng-template ngbSlide>
         <img src="/assets/images/carousel1.jpg" class="img-responsive">
@@ -10,9 +11,16 @@
     </ng-template>
 </ngb-carousel>
 
+<h2>新着記事</h2>
+<div class="text-center">
+    <button class="btn btn-outline-primary" type="button" routerLink="/article/create">
+        <span>記事を投稿する</span>
+    </button>
+</div>
+<!-- Article Card List -->
 <div *ngIf="articleList.length; else noArticles">
     <div *ngFor="let article of articleList">
-        <a class="card">
+        <a class="card" routerLink='/article/{{article?.articleId}}'>
             <div class="card-body">
                 <h5 class="card-title">{{article?.articleTitle}}</h5>
                 <p class="card-text">{{article?.articleContent | headline: 100}}</p>

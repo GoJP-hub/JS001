@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AppError } from 'src/app/common/app-error';
 import { BadRequestError } from 'src/app/common/bad-request-error';
 import { NotFoundError } from 'src/app/common/not-found-error';
@@ -18,6 +19,7 @@ export class ArticleCreateReactiveComponent implements OnInit {
   });
 
   constructor(
+    private router: Router,
     private articleCreateService: ArticleCreateService,
     private fb: FormBuilder) { }
 
@@ -35,6 +37,7 @@ export class ArticleCreateReactiveComponent implements OnInit {
       (data) => {
         console.log('SUCCESS: ' + JSON.stringify(data));
         alert('投稿しました!');
+        this.router.navigate(['/']);
       },
       (err: AppError) => {
         if (err instanceof BadRequestError){

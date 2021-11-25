@@ -15,7 +15,7 @@ export const ARTICLES: Article [] = [
       createdAt: new Date(2021, 1, 1),
       updatedAt: new Date(2021, 1, 1),
   },  {
-      articleId: 1,
+      articleId: 2,
       articleTitle: '記事タイトル',
       articleContent: 
         'ダミーの文章----------------------------------------------------------------------------------------------------------------------------------------。'
@@ -28,7 +28,7 @@ export const ARTICLES: Article [] = [
       createdAt: new Date(2021, 1, 1),
       updatedAt: new Date(2021, 1, 1),
   },  {
-    articleId: 1,
+    articleId: 3,
     articleTitle: '記事タイトル',
     articleContent: 
       'ダミーの文章----------------------------------------------------------------------------------------------------------------------------------------。'
@@ -41,7 +41,7 @@ export const ARTICLES: Article [] = [
     createdAt: new Date(2021, 1, 1),
     updatedAt: new Date(2021, 1, 1),
   },  {
-    articleId: 1,
+    articleId: 4,
     articleTitle: '記事タイトル',
     articleContent: 
       'ダミーの文章----------------------------------------------------------------------------------------------------------------------------------------。'
