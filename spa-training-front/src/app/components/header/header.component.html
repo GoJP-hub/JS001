@@ -1,4 +1,32 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="navbar-brand">
-        <img src="/assets/images/logo.png"  class="logo">掲示板</div>
+        <img src="/assets/images/logo.png" class="logo">掲示板
+    </div>
+    <!-- Google Button -->
+    <div class="navbar-expand justify-content-end">
+        <ul class="navbar-nav">
+            <!-- assertion -->
+            <div *ngIf="isLogin; then login else notLogin"></div>
+            <ng-template #login>
+                <!-- userthumbnail -->
+                <li class="nav-item">
+                    <img 
+                        src="{{pictureUrl}}" 
+                        class="rounded-circle thumbnail-small" 
+                        ngbTooltip="{{userName}}" 
+                        placement="bottom"/>
+                </li>
+                <!-- Google Signout -->
+                <li class="nav-item active">
+                    <a (click)="logout()" href="#" class="nav-link">SignOut</a>
+                </li>
+            </ng-template>
+            <ng-template #notLogin>
+                <!-- Google Signin -->
+                <li class="nav-item">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
 </nav>

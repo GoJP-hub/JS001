@@ -2,8 +2,10 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { RouterModule } from '@angular/router'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { ArticleListComponent } from './components/article-list/article-list.component';
@@ -17,9 +19,13 @@ import { AppErrorHandler } from './common/app-error-hander';
 import { environment } from 'src/environments/environment';
 import { ArticleCreateReactiveComponent } from './components/article-create/article-create-reactive/article-create-reactive.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
-import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './components/login/login.component';
+
 
 const httpInterceptorProviders = environment.httpInterceptorProviders;
+export function jwtTokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +38,8 @@ const httpInterceptorProviders = environment.httpInterceptorProviders;
     ThumbnailDirective,
     ArticleCreateTemplateComponent,
     ArticleCreateReactiveComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,14 @@ const httpInterceptorProviders = environment.httpInterceptorProviders;
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    JwtModule.forRoot({
+      config: { 
+        tokenGetter: jwtTokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler},
