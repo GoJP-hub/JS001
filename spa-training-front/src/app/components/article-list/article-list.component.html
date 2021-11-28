@@ -17,6 +17,9 @@
         <span>記事を投稿する</span>
     </button>
 </div>
+<!-- Pagenation -->
+<app-pagenation [currentPage]="currentPage" [maxPage]="maxPage"></app-pagenation>
+
 <!-- Article Card List -->
 <div *ngIf="articleList.length; else noArticles">
     <div *ngFor="let article of articleList">

@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { ArticleCreateReactiveComponent } from './components/article-create/article-create-reactive/article-create-reactive.component';
 import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
 import { LoginComponent } from './components/login/login.component';
+import { PagenationComponent } from './components/pagenation/pagenation.component';
 
 
 const httpInterceptorProviders = environment.httpInterceptorProviders;
@@ -39,7 +40,8 @@ export function jwtTokenGetter() {
     ArticleCreateTemplateComponent,
     ArticleCreateReactiveComponent,
     ArticleDetailComponent,
-    LoginComponent
+    LoginComponent,
+    PagenationComponent
   ],
   imports: [
     BrowserModule,

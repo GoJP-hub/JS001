@@ -18,6 +18,8 @@ export class ArticleListService extends BaseService{
   }
 
   getArticle(pageNo: number, displayLimit: number):Observable<any>{ 
+    console.log("[GET-ARTICLE] PAGE: " + pageNo);
+    console.log("[GET-ARTICLE] PAGE-LIMIT: " + displayLimit);
     const params = new HttpParams()
       .set("offset", (pageNo * displayLimit).toString())
       .set("limit", displayLimit.toString());
@@ -25,5 +27,11 @@ export class ArticleListService extends BaseService{
     return this.httpClient.get<Article[]>(this.apiUrl + '/article/list', { params })
       .pipe( catchError( this.handleError )
       );
+  }
+
+  countArticles():Observable<any>{
+    console.log('[COUNT-ARTICLE');
+    return this.httpClient.get<any>(this.apiUrl + '/article/count')
+      .pipe( catchError( this.handleError ));
   }
 }

@@ -16,13 +16,20 @@ export class MockBackendInterceptor implements HttpInterceptor {
                         const begin = parseInt(req.params.get('offset') || '0', 10);
                         const end = begin + parseInt(req.params.get('limit') || '1', 10);
                         return of(new HttpResponse({ status: 200, body: ARTICLES.slice(begin, end)}));
+                    } else if (req.url.endsWith('/article/count')){
+                        return of(new HttpResponse({ status: 200, body: {count: ARTICLES.length} }));
+                    } else if (req.url.includes('/article')){
+                        const id = parseInt(req.url.split('/')[4], 10);
+                        return of(new HttpResponse({ status: 200, body: ARTICLES[id-1]}));
                     }
                 } else if (req.method === 'POST'){
-                    if (req.url.endsWith('/article') && req.body.articleTitle && req.body.articleContent){
-                        return of(new HttpResponse({ status: 200, body: {message: 'OK'}}));
-                    }
+                    if (req.url.endsWith('/article') 
+                        && req.body.articleTitle 
+                        && req.body.articleContent){
+                            return of(new HttpResponse({ status: 200, body: {message: 'OK'}}));
+                        }
                 }
-                return next.handle(req)
+                return next.handle(req);
             } ),
             delay(1000),
         );
